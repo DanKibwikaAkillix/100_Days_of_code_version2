@@ -1,0 +1,6 @@
+p[draggable="true"]{
+    color: rgb(59, 149, 20);
+}
+p[draggable="false"]{
+    font-size: 26px;
+}
