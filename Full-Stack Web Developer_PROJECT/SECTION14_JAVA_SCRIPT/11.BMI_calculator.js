@@ -5,8 +5,8 @@ function bmi(weight, height) {
     return bmi;
 }
 
-outputResponse = bmi(65, 1.8)
-console.log(outputResponse)
+// outputResponse = bmi(65, 1.8)
+// console.log(outputResponse)
 
 
 
