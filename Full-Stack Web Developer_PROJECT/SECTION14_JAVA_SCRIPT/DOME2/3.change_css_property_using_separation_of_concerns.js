@@ -1,0 +1,3 @@
+document.querySelector("button").classList.toggle("invisible"); //Check if a css value has been applied, if yes it turns off if no it turns it on (True or false)
+document.querySelector("button").classList.add("invisible"); //create class invisible and add the invisible css property to the html element
+document.querySelector("button").classList.remove("invisible"); //create class invisible and removes the invisible css property to the html element
