@@ -1,3 +1,10 @@
 .invisible{
     visibility: hidden;
 }
+
+.makeItBig {
+    font-size: 3rem;
+    color:blueviolet;
+    text-shadow: #000 10px 10px 10px 10px ;
+    transform-origin: 1.3svb;
+}
