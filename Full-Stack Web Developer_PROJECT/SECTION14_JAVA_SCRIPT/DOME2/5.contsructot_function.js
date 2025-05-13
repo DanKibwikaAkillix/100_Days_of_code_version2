@@ -1,4 +1,13 @@
 
+function pickupTheBroom(){
+    console.log("PIck up the broom")
+}
+
+function CleanBy(){
+    console.log("Clean Clean Clean ")
+}
+
+
 function HouseKeeper(name, age, yOe, skills){
     this.name = name;
     this.age = age;
@@ -6,8 +15,12 @@ function HouseKeeper(name, age, yOe, skills){
     this.skills = skills;
     this.startCleaning = function() {
         alert("Let start cleaning !!! <3");
+
+        pickupTheBroom();
+        CleanBy();
     }
 
+    
     return "hello my name is "+ name +" i am "+ age +" i have "+ yOe +"of experiences and my skills are "+ skills;
 }
 // examples 
