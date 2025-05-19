@@ -3,11 +3,24 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
+level = 0;
 
 //function to build a random number which will be used as index to generate random color from the buttonColors array
 function nextSequence() {
     randomNumber = Math.floor(Math.random() * 3) + 1;
     return randomNumber;
+}
+
+function pressKey() {
+    
+    $(document).ready(() => {
+        $(document).
+            keypress(function (event) {
+               console.log(event);
+               $("h1").text("Level " + level++)
+            });
+    });
+
 }
 
 function playNextSequence() {
@@ -31,14 +44,18 @@ function playNextSequence() {
         console.log(userClickedPattern);
     })
 
-    
+
     $(".btn").click(function () {
         var userChosenColour = $(this).attr("id");
-        $("#" + userChosenColour).toggleClass("pressed");
-        //  $("#" + userChosenColour).removeClass("pressed");
+        var id = $("#" + userChosenColour);
+        id.addClass("pressed");
+
+        setTimeout(function () {
+            id.removeClass('pressed');
+        }, 1000);
     })
 
-
+    pressKey();
 }
 
 playNextSequence();
