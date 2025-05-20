@@ -1,70 +1,88 @@
-
-// arry to hold my color names
+// array to hold my color names
 var buttonColors = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
-level = 0;
+var started = false;
+var level = 0;
 
-//function to build a random number which will be used as index to generate random color from the buttonColors array
+// Function to generate a random number (0–3)
 function nextSequence() {
-    randomNumber = Math.floor(Math.random() * 3) + 1;
-    return randomNumber;
-}
+    userClickedPattern = []; // Clear previous input
+    level++;
+    $("h1").text("Level " + level);
 
-function pressKey() {
-    
-    $(document).ready(() => {
-        $(document).
-            keypress(function (event) {
-               console.log(event);
-               $("h1").text("Level " + level++)
-            });
-    });
-
-}
-
-function playNextSequence() {
-    // call the function nextSequence's return statement. assigned it to the array as index. assigned the value to a variable called randomChosenColour
-    var randomChosenColor = buttonColors[nextSequence()];
+    var randomNumber = Math.floor(Math.random() * 4); // FIX: was 1–3
+    var randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
 
-    // jquery to fade in and fade out button
-    var fadeInANDout = $("#" + gamePattern).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    // Animate the button
+    $("#" + randomChosenColor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
-    var soundEffect = new Audio("sounds/" + gamePattern + ".mp3");
+    // Play sound
+    var soundEffect = new Audio("sounds/" + randomChosenColor + ".mp3");
     soundEffect.play();
-
-    $(".btn").click(function () {
-        var userChosenColour = $(this).attr("id");
-        var fadeInANDout = $("#" + userChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-
-        var soundEffect = new Audio("sounds/" + userChosenColour + ".mp3");
-        soundEffect.play();
-        userClickedPattern.push(userChosenColour);
-        console.log(userClickedPattern);
-    })
-
-
-    $(".btn").click(function () {
-        var userChosenColour = $(this).attr("id");
-        var id = $("#" + userChosenColour);
-        id.addClass("pressed");
-
-        setTimeout(function () {
-            id.removeClass('pressed');
-        }, 1000);
-    })
-
-    pressKey();
 }
 
-playNextSequence();
+// Only start the game once
+$(document).keypress(function (event) {
+    if (!started) {
+        $("h1").text("Level " + level);
+        nextSequence();
+        started = true;
+    }
+});
 
+// Handle button clicks
+$(".btn").click(function () {
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
 
+    // Animate user click
+    $("#" + userChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
+    // Play user sound
+    var soundEffect = new Audio("sounds/" + userChosenColour + ".mp3");
+    soundEffect.play();
 
+    // Add pressed class
+    $("#" + userChosenColour).addClass("pressed");
+    setTimeout(function () {
+        $("#" + userChosenColour).removeClass("pressed");
+    }, 100);
 
+    // Check user answer
+    checkAnswer(userClickedPattern.length - 1);
+});
 
+// Check the user's answer
+function checkAnswer(currentIndex) {
+    if (userClickedPattern[currentIndex] === gamePattern[currentIndex]) {
+        // If entire sequence is correct
+        if (userClickedPattern.length === gamePattern.length) {
+            setTimeout(function () {
+                nextSequence();
+            }, 1000);
+        }
+    } else {
+        // Wrong click
+        var wrongEffect = new Audio("sounds/wrong.mp3");
+        wrongEffect.play();
 
+        $("body").addClass("red");
+        setTimeout(function () {
+            $("body").removeClass('red');
+        }, 1000);
 
+        $("h1").text("Lost. Press any key to start again.");
 
+        // Reset everything
+        startOver();
+    }
+}
+
+function startOver() {
+    level = 0;
+    gamePattern = [];
+    userClickedPattern = [];
+    started = false;
+}
