@@ -26,7 +26,9 @@ app.post("/submit", (req, res) => {
 
   const randomAdj = adj[Math.floor(Math.random() * adj.length)];
   const randomNoun = noun[Math.floor(Math.random() * noun.length)];
-  res.render("index.ejs", {adjective: randomAdj, noun: randomNoun});
+  const d = new Date();
+  let year = d.getFullYear();
+  res.render("index.ejs", {adjective: randomAdj, noun: randomNoun, currentYear: year});
 
   // res.send("Here is the number :" + adj[randomNumber1] + " and "+ noun[randomNumber2]);
   
