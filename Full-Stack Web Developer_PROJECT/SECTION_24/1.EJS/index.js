@@ -1,10 +1,8 @@
 import express from "express";
+import bodyPaser from "bo"
 
 const app = express();
 const port = 3001;
-
-
-
 
 
 app.get("/", (req, res) => {
