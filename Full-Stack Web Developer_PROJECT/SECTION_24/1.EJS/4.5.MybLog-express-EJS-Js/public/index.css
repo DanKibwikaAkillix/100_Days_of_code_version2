@@ -2,54 +2,137 @@
 @import "../node_modules/tailwindcss";
 
 body {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  padding: 0;
+  margin: 0;
+  /* background-color: red; */
 }
 
+.main-container {
+  /* background-color: #3182ce; */
+  width: 100%;
+  margin-top: 100px;
+}
+
+.blog-container {
+  /* background-color: red; */
+  display: inline-flex;
+  max-width: 2000px;
+  width: 100%;
+}
+
+#button-collapse {
+  background-color: rgba(175, 33, 33, 0.652);
+  padding: 5px 20px 10px 20px;
+  border-radius: 5px  45px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: #fff;
+
+}
+#button-collapse:hover{
+     background-color: rgba(8, 117, 32, 0.652);
+}
+.instruction {
+  display: none; /* Initially hide the instructions */
+}
+.setVisible {
+  display: block; /* Use 'block' for better list display */
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  /* Transition will apply to properties that change, like opacity or height if you animate them */
+  padding: 10px;
+    transition: 2s;
+}
+
+.blog-container .card {
+  margin: 5px;
+}
 /* Header Container Styles */
 .header-container {
-    background-color: #1a202c; 
-    color: #e2e8f0; 
-    padding: 1.5rem 0; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
-    border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  color: #101f32;
+  padding: 1.5rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  position: fixed;
+  z-index: 1;
 }
 
 /* Navigation Link Styles */
 .nav-link {
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
-    border-radius: 0.375rem; 
-    padding: 0.5rem 0.75rem;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
 }
 
 .nav-link:hover {
-    color: #a0aec0; 
-    background-color: #2d3748;
+  color: #a0aec0;
+  background-color: #2d3748;
 }
 
 /* Logo Text Styles */
 .logo-text {
-    font-weight: 700; 
-    font-size: 1.5rem; 
-    color: #63b3ed;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #63b3ed;
 }
 
 /* Footer Container Styles */
 .footer-container {
-    background-color: #2d3748; 
-    color: #cbd5e0; 
-    padding: 2rem 0;
-    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow above */
-    border-radius: 0.5rem; 
+  background-color: #2d3748;
+  color: #cbd5e0;
+  padding: 2rem 0;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 -2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow above */
+  border-radius: 0rem 0rem 0.5 0.5rem;
 }
 
 /* Footer Link Styles */
 .footer-link {
-    transition: color 0.3s ease-in-out; 
-    padding: 0.25rem 0.5rem; 
-    border-radius: 0.25rem; 
+  transition: color 0.3s ease-in-out;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .footer-link:hover {
-    color: #a0aec0; 
-    background-color: #4a5568; 
+  color: #a0aec0;
+  background-color: #4a5568;
+}
+
+/* form section */
+
+/* Custom styles for consistent rounded corners and shadows */
+.card {
+  border-radius: 0.75rem; /* Large rounded corners */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.form-input-field,
+.form-textarea-field {
+  border-radius: 0.5rem; /* Medium rounded corners for inputs */
+  border: 1px solid #cbd5e0; /* Light gray border */
+  padding: 0.75rem 1rem; /* Ample padding */
+  transition: all 0.2s ease-in-out; /* Smooth transitions for focus */
+}
+.form-input-field:focus,
+.form-textarea-field:focus {
+  outline: none;
+  border-color: #63b3ed; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5); /* Blue glow on focus */
+}
+.submit-button {
+  border-radius: 0.5rem; /* Rounded corners for button */
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out; /* Smooth transitions */
+}
+.submit-button:hover {
+  background-color: #3182ce; /* Darker blue on hover */
+  transform: translateY(-1px); /* Slight lift on hover */
+}
+.submit-button:active {
+  transform: translateY(0); /* Press effect */
 }

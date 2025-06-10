@@ -5,16 +5,30 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public/"));
+app.use(express.static("./public/assets"));
 
 app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
-app.listen(port, ()=> {
+app.get("/blog", (req, res) => {
+    res.render("post.ejs");
+})
+
+app.get("/contact", (req, res) => {
+    res.render("contact_us.ejs");
+})
+
+
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+
+
+
 
 
 // . Post Creation: Users should be able to create new posts.
