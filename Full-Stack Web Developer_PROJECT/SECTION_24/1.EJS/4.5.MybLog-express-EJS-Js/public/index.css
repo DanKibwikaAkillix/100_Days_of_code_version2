@@ -1,0 +1,55 @@
+/* Apply Inter font family if not already applied by Tailwind base */
+@import "../node_modules/tailwindcss";
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Container Styles */
+.header-container {
+    background-color: #1a202c; 
+    color: #e2e8f0; 
+    padding: 1.5rem 0; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    border-radius: 0.5rem;
+}
+
+/* Navigation Link Styles */
+.nav-link {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
+    border-radius: 0.375rem; 
+    padding: 0.5rem 0.75rem;
+}
+
+.nav-link:hover {
+    color: #a0aec0; 
+    background-color: #2d3748;
+}
+
+/* Logo Text Styles */
+.logo-text {
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    color: #63b3ed;
+}
+
+/* Footer Container Styles */
+.footer-container {
+    background-color: #2d3748; 
+    color: #cbd5e0; 
+    padding: 2rem 0;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow above */
+    border-radius: 0.5rem; 
+}
+
+/* Footer Link Styles */
+.footer-link {
+    transition: color 0.3s ease-in-out; 
+    padding: 0.25rem 0.5rem; 
+    border-radius: 0.25rem; 
+}
+
+.footer-link:hover {
+    color: #a0aec0; 
+    background-color: #4a5568; 
+}
