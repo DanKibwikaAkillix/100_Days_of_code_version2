@@ -2,6 +2,12 @@
 import express from "express";
 import bodyParser from "body-parser";
 
+
+// var name = "";
+// var title = "";
+// var msg = "";
+// var image = "";
+
 const app = express();
 const port = 3000;
 
@@ -12,6 +18,17 @@ app.use(express.static("./public/assets"));
 app.get("/", (req, res) => {
     res.render("index.ejs");
 });
+
+app.post("/submitBlog", (req, res) => {
+    const name = req.body['name'];
+    const title = req.body['title'];
+    const msg = req.body['blog-content'];
+    const image = req.body['blog-image'];
+    const date = req.body['date']
+    res.render("post.ejs", { name: name, title : title, msg : msg , image: image, date: date});
+
+    console.log(name +" " + title+" " +  msg +" " + image +" " + date)
+})
 
 app.get("/blog", (req, res) => {
     res.render("post.ejs");

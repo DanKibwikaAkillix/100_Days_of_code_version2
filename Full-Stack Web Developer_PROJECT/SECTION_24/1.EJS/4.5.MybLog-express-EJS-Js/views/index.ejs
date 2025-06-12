@@ -91,7 +91,7 @@
       Create Your Blog Post
     </h2>
 
-    <form class="space-y-6">
+    <form class="space-y-6" method="POST" action="/submitBlog">
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700 mb-1"
           >Name</label
@@ -108,15 +108,15 @@
 
       <div>
         <label
-          for="surname"
+          for="title"
           class="block text-sm font-medium text-gray-700 mb-1"
-          >Surname</label
+          >Blog Title</label
         >
         <input
           type="text"
-          id="surname"
-          name="surname"
-          placeholder="Your Surname"
+          id="title"
+          name="title"
+          placeholder="Enter the title"
           class="form-input-field mt-1 block w-full"
           required
         />

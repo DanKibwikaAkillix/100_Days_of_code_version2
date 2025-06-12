@@ -10,7 +10,35 @@
 
     <%- include ("./partial/headers.ejs") %>
 
+    <% if (locals.name || locals.title || locals.msg || locals.image || locals.date ) { %>
+
+    
     <h1>Post</h1>
+
+    <div class="blog-container">
+    <div class="card" style="width: 35rem">
+      <img
+        src="<%= image %>"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title"><%= title %> </h5>
+        <h6>Author : <%= name %></h6>
+        <h6>Date : <%= date %> </h6>
+        <p class="card-text">
+         <%= msg %>
+        </p>
+        <a href="#" class="btn btn-primary">Read more</a>
+      </div>
+    </div>
+
+
+  <% } else { %>
+        <br><br><br><br><b></b>
+      <h4> No Blog posted yet ...</h4>
+  
+    <% } %>
 
      <%- include ("./partial/footer.ejs") %>
     

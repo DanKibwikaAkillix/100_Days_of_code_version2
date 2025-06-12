@@ -136,3 +136,10 @@ body {
 .submit-button:active {
   transform: translateY(0); /* Press effect */
 }
+
+
+/* contact-us-form */
+#contact-us {
+  margin-top: 100px;
+
+}
