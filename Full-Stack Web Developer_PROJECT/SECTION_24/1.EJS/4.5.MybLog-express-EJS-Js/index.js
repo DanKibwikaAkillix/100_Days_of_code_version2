@@ -1,57 +1,67 @@
-
 import express from "express";
-import bodyParser from "body-parser";
-
-
-// var name = "";
-// var title = "";
-// var msg = "";
-// var image = "";
+// Express parses urlencoded by itself
+import multer from "multer";
+import path from "path";
 
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public/"));
-app.use(express.static("./public/assets"));
+// Set view engine to EJS
+app.set("view engine", "ejs");
 
+// Serve static files
+app.use(express.static("public"));
+app.use(express.static("public/assets"));
+
+// Set up multer storage to save in 'public/assets/images'
+const storage = multer.diskStorage({ 
+    destination: (req, file, cb) => {
+        cb(null, "./public/assets/images"); // folder to save files
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // unique name with timestamp
+    },
+});
+
+// Initialize upload
+const upload = multer({ storage: storage });
+
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index"); // views/index.ejs
 });
 
-app.post("/submitBlog", (req, res) => {
-    const name = req.body['name'];
-    const title = req.body['title'];
-    const msg = req.body['blog-content'];
-    const image = req.body['blog-image'];
-    const date = req.body['date']
-    res.render("post.ejs", { name: name, title : title, msg : msg , image: image, date: date});
+// Handle form submission with file upload
+app.post("/submit", upload.single("blog-image"), (req, res) => {
+    const name = req.body.name;
+    const title = req.body.title;
+    const msg = req.body["blog-content"];
 
-    console.log(name +" " + title+" " +  msg +" " + image +" " + date)
-})
+    // The uploaded file is available at req.file
+    // Store its path relative to "public" for easy accessing
+    const image = req.file ? "/assets/images/" + req.file.filename : null;
 
+    const date = req.body.date;
+
+    res.render("index", { name, title, msg, image, date });
+
+    console.log(req.body);
+    console.log(req.file);
+});
+
+// View a single post
 app.get("/blog", (req, res) => {
-    res.render("post.ejs");
-})
-
-app.get("/contact", (req, res) => {
-    res.render("contact_us.ejs");
-})
-
-
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    res.render("post"); // views/post.ejs
 });
 
+// Contact page
+app.get("/contact", (req, res) => {
+    res.render("contact_us"); // views/contact_us.ejs
+});
 
-
-
-
-
-// . Post Creation: Users should be able to create new posts.
-
-// 2. Post Viewing: The home page should allow the user to view all their posts.
-
-// 3. Post Update/Delete: Users should be edit and delete posts as needed.
-
-// 3. Styling: The application should be well-styled and responsive, ensuring a good user experience on both desktop and mobile devices.
+// Start server
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+});
