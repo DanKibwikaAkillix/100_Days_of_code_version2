@@ -1,0 +1,15 @@
+{
+  "name": "postgres",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "kibwika",
+  "type": "commonjs",
+  "main": "indexTest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
+  }
+}
